@@ -28,4 +28,5 @@ public class Spawner : MonoBehaviour
                 // get the control script for that child and enabled, which will invoke Start/Update
                 child_transform.gameObject.SetActive(true);
             }
+    }
 }
