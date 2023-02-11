@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIScore : MonoBehaviour
 {
-    //public Movement score;
+    public Movement score;
     [SerializeField] public Text displayScore;
     void Start()
     {
@@ -15,10 +15,10 @@ public class UIScore : MonoBehaviour
         displayScore.text = "Score: 0000";
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         // should have a forLive.playerScore + 1).ToString() for the number taken from Movement Script
-        displayScore.text = "Score: missing count down text";
+        displayScore.text = "Score: " + (score.playerScore).ToString();
     }
 }

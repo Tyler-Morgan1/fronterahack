@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UILives : MonoBehaviour
 {
-    //public Movement lives; // instance off of Movement script
+    public Movement lives; // instance off of Movement script
     [SerializeField] public Text displayLives; // text field
 
 
@@ -20,6 +20,6 @@ public class UILives : MonoBehaviour
     void Update()
     {
         // should have a forLive.playerLives + 1).ToString() for the number taken from Movement Script
-        displayLives.text = "Lives: missing count down text";
+        displayLives.text = "Lives: " + (lives.playerLives).ToString();
     }
 }
