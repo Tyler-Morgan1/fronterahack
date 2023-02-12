@@ -26,13 +26,13 @@ public class Falling : MonoBehaviour
 
     }
      void OnTriggerEnter2D(Collider2D collision){
-        if(correct == false){
+        if(correct == false && collision.gameObject.name != "Background"){
         GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
 
         GameObject.Find("lion").GetComponent<Movement>().playerLives--;
         Debug.Log("Incorrect");
         }
-        else if(correct == true){
+        else if(correct == true && collision.gameObject.name != "Background"){
          GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
 
         Debug.Log("Correct");
@@ -41,8 +41,9 @@ public class Falling : MonoBehaviour
         
         }
         else if (correct == true && collision.gameObject.name == "Background"){
+        Debug.Log("false");
         GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
-         GameObject.Find("lion").GetComponent<Movement>().playerLives--;
+        GameObject.Find("lion").GetComponent<Movement>().playerLives--;
 
         }
 
