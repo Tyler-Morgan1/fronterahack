@@ -5,7 +5,7 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
    
-    private int num_of_questions = 5;
+    private int num_of_questions;
     public bool sGame = false;
     private bool gameisRunning = true;
     private Movement liveCounter;
@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        num_of_questions = gameObject.transform.childCount;
 StartCoroutine(startGame());
     liveCounter = GameObject.Find("lion").GetComponent<Movement>();
     parentQuestion = GameObject.Find("parent");

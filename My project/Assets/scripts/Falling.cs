@@ -26,13 +26,24 @@ public class Falling : MonoBehaviour
 
     }
      void OnTriggerEnter2D(Collider2D collision){
-        GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
         if(correct == false){
+        GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
+
         GameObject.Find("lion").GetComponent<Movement>().playerLives--;
         Debug.Log("Incorrect");
         }
         else if(correct == true){
+         GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
+
         Debug.Log("Correct");
+        }
+        else if (correct == false && collision.gameObject.name == "Background"){
+        
+        }
+        else if (correct == true && collision.gameObject.name == "Background"){
+        GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
+         GameObject.Find("lion").GetComponent<Movement>().playerLives--;
+
         }
 
      }
