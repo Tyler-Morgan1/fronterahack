@@ -20,6 +20,8 @@ public class Game : MonoBehaviour
     IEnumerator start(){
     yield return new WaitUntil(() => Input.GetKeyDown("space"));
     GameObject.Find("Title").SetActive(false);
+    GameObject LiveCounter = GameObject.Find("Lives");
+    LiveCounter.transform.position = new Vector3(LiveCounter.transform.position.x + 25,LiveCounter.transform.position.y - 75,0);
     Spawn.GetComponent<Spawner>().enabled = true; 
     }
 }
