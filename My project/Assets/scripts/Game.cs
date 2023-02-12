@@ -5,6 +5,7 @@ using UnityEngine;
 public class Game : MonoBehaviour
 {
     private GameObject Spawn;
+    public GameObject liveText;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,8 @@ public class Game : MonoBehaviour
     yield return new WaitUntil(() => Input.GetKeyDown("space"));
     GameObject.Find("Title").SetActive(false);
     GameObject LiveCounter = GameObject.Find("Lives");
-    LiveCounter.transform.position = new Vector3(LiveCounter.transform.position.x + 25,LiveCounter.transform.position.y - 75,0);
+    GameObject.Find("pause").GetComponent<pause>().enabled = true;
+    liveText.SetActive(true);
     Spawn.GetComponent<Spawner>().enabled = true; 
     }
 }
