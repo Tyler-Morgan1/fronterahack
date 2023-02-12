@@ -11,10 +11,12 @@ public class Falling : MonoBehaviour
         private float speed = 1.0f;
         
         public bool correct = false;
+        private GameObject forSpawner;
     void Start()
     {
         ridge = gameObject.GetComponent<Rigidbody2D>();
         position = new Vector2(0,-1);
+       GameObject.Find("Spawner");
     }
 
     // Update is called once per frame
@@ -24,6 +26,14 @@ public class Falling : MonoBehaviour
 
     }
      void OnTriggerEnter2D(Collider2D collision){
-        Debug.Log(correct);
+        GameObject.Find("Spawner").GetComponent<Spawner>().sGame = true;
+        if(correct == false){
+        GameObject.Find("lion").GetComponent<Movement>().playerLives--;
+        Debug.Log("Incorrect");
+        }
+        else if(correct == true){
+        Debug.Log("Correct");
+        }
+
      }
 }

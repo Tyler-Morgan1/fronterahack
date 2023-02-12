@@ -4,29 +4,54 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public const float SPAWN_INTERVAL = 3.0f;
-    public int num_of_questions = 5;
-    private Vector2 SCREEN_MAX;
-    private Vector2 SCREEN_MIN;
+   
+    private int num_of_questions = 5;
+    public bool sGame = false;
+    private bool gameisRunning = true;
+    private Movement liveCounter;
+    private GameObject parentQuestion;
+    
     
     // Start is called before the first frame update
     void Start()
     {
-
+StartCoroutine(startGame());
+    liveCounter = GameObject.Find("lion").GetComponent<Movement>();
+    parentQuestion = GameObject.Find("parent");
     }
 
     // Update is called once per frame
     void Update()
     {
-            // timer expired, time to spawn if we still have children
-            if (transform.childCount >= 1) {
-                // unparent from this object
-                Transform child_transform = transform.GetChild(Random.Range(0, num_of_questions)); // max is exclusive
-                child_transform.parent = null;
-                num_of_questions -= 1;
-                    
-                // get the control script for that child and enabled, which will invoke Start/Update
-                child_transform.gameObject.SetActive(true);
-            }
+    if (liveCounter.playerLives == 0){
+    gameisRunning = false;
     }
+    }
+
+    IEnumerator startGame(){
+        while(gameisRunning){
+    yield return new WaitForSeconds(.01f);
+    
+       
+    int random = Random.Range(0, num_of_questions);
+     Transform child_transform = transform.GetChild(random);
+     child_transform.parent = null;
+     num_of_questions -= 1; 
+     child_transform.gameObject.SetActive(true);
+     parentQuestion.transform.GetChild(random).gameObject.SetActive(true);
+//wait until touch
+    yield return new WaitUntil(() => sGame == true);
+    Destroy(parentQuestion.transform.GetChild(random).gameObject);
+    Destroy(child_transform.gameObject);
+    sGame = false;
+        }
+    
+    }
+
+   
+    
+
+    
 }
+
+
